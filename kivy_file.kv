@@ -1,0 +1,996 @@
+ScreenManager:
+	LoginPage:
+	MenuScreen:
+	FirstInfoScreen:
+	SecondInfoScreen:
+	ThirdInfoScreen:
+	FourInfoScreen:
+	FiveInfoScreen:
+	SixInfoScreen:
+	SevenInfoScreen:
+	EightInfoScreen:
+	NineInfoScreen:
+	ElevenInfoScreen:
+	TwelveInfoScreen:
+	ThirteenInfoScreen:
+	FourteenInfoScreen:
+	FifteenInfoScreen:
+
+
+<LoginPage>:
+	name: 'login_page'
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {'center_x':0.5, 'center_y':0.9}
+		spacing: 0
+		padding: [0,400,0,200]
+		MDLabel:
+			text: 'АIC Готельного Комплексу'
+			halign: 'center'
+			font_size: 36
+		Image:
+			source: 'hotel.png'
+			pos_hint: {'center_x':0.5, 'center_y':0.9}
+	BoxLayout:
+		orientation: 'vertical'
+		padding: [56,400,56,400]
+		spacing: 20
+		#size: 100,200
+		pos_hint: {'center_x':0.5, 'center_y':0.5}
+		TextInput:
+			id: login
+			size_hint: (None, None)
+			height: 50
+			width: 300
+			multiline:False
+			font_size: 28
+			hint_text: "Логін"
+		TextInput:
+			id: passw
+			size_hint: (None, None)
+			height: 50
+			width: 300
+			multiline:False
+			password:True
+			font_size: 28
+			hint_text: "Пароль"
+		Button:
+			size_hint: (None, None)
+			height: 50
+			width: 300
+			text: "Вхід"
+			font_size: 24
+			on_release: root.verify_credentials()
+
+
+
+<MainTitleExit>
+	BoxLayout:
+		orientation: 'horizontal'
+		size_hint:(None, None)
+		width: root.width
+		height: "55dp"
+		pos: 0, root.height - 55
+		#pos_hint: {'top':0.5}
+		BoxLayout:
+			canvas:
+				Color:
+					rgba: 0.5, 0.5, 0.5, 0.5
+				Rectangle: 
+					size: self.size
+					pos: self.pos
+			orientation: 'horizontal'
+			padding: [0, 0, 100, 0]
+			#spacing: 70
+			Button:
+				id: btn_menu
+				size_hint: 1, 1
+				text: '<< Вихід'
+				size: 50, 40
+				font_size: 24
+				on_release: root.exit()
+		BoxLayout:
+			canvas:
+				Color:
+					rgba: 0.5, 0.5, 0.5, 0.5
+				Rectangle: 
+					size: self.size
+					pos: self.pos
+			orientation: 'horizontal'
+			padding: [0, 0, 100, 0]
+			#spacing: 70
+			Label:
+				id: date
+				text: '18 листопада 2022'
+				font_size: 20
+				color: [0,0,0]
+
+
+
+
+
+
+<MenuScreen>:
+	name: 'menu'   
+	BoxLayout:
+		pos_hint: {'top': .95}
+		ScrollView:
+			MDList:
+				ThreeLineListItem:
+					text: "1.Перелік і загальне число фірм, що забронювали"
+					secondary_text: "місця в обсязі, не менше вказаного,"
+					tertiary_text: "за весь період співпраці, або за деякий період."
+					on_release: root.manager.current = "first_info"
+				ThreeLineListItem:
+					text: "2.Перелік і загальне число постояльців,"
+					secondary_text:"що заселяли в номери із зазначеними " 
+					tertiary_text:"характеристиками за певний період."
+					on_release: root.manager.current = "second_info"
+				OneLineListItem:
+					text : "3.Кількість вільних номерів на даний момент."
+					on_release: root.manager.current = "third_info"
+				TwoLineListItem
+					text : "4.Відомості про кількість вільних номерів" 
+					secondary_text:"в із зазначеними характеристиками."
+					on_release: root.manager.current = "four_info"
+				ThreeLineListItem:
+					text : "5.Відомості по конкретному вільному номеру:"
+					secondary_text:"протягом якого часу він буде пустувати"
+					tertiary_text:"і про його характеристики."
+					on_release: root.manager.current = "five_info"
+				TwoLineListItem:
+					text : "6.Список зайнятих зараз номерів, котрі"
+					secondary_text:"звільняються до зазначеного терміну."
+					on_release: root.manager.current = "six_info"
+				ThreeLineListItem:
+					text : "7.Дані про обсяг бронювання номерів" 
+					secondary_text:"даною фірмою за вказаний період,"
+					tertiary_text:"і якими номерами віддавалися переваги."
+					on_release: root.manager.current = "seven_info"
+				OneLineListItem:
+					text : "8.Список незадоволених клієнтів та їхні скарги."
+					on_release: root.manager.current = "eight_info"
+				OneLineListItem:
+					text : "9.Інформація про доходи"
+					on_release: root.manager.current = "nine_info"
+				ThreeLineListItem:
+					text : "10.Відомості про конкретних осіб та фірм" 
+					secondary_text:"які більше за всіх відвідують "
+					tertiary_text:"готель по всім корпусам."
+					on_release: root.manager.current = "eleven_info"
+				OneLineListItem:
+					text : "11.Відомості про нових клієнтів за вказаний період."
+					on_release: root.manager.current = "twelve_info"
+				ThreeLineListItem:
+					text : "12.Відомості про конкретну людину скільки разів " 
+					secondary_text:"він відвідував готель, в яких номерах і в який" 
+					tertiary_text:"період зупинявся, які рахунки оплачував."
+					on_release: root.manager.current = "thirteen_info"
+				TwoLineListItem:
+					text : "13.Відомості про конкретний номер:" 
+					secondary_text:"ким він був зайнятий в певний період."
+					on_release: root.manager.current = "fourteen_info"
+				TwoLineListItem:
+					text : "14.Відсоткове відношення всіх номерів до номерів" 
+					secondary_text:"заброньованих партнерами"
+					on_release: root.manager.current = "fifteen_info"
+				TwoLineListItem:
+					text : "" 
+					secondary_text:""
+	MainTitleExit:
+
+
+
+
+
+
+
+
+
+
+<FirstInfoScreen>:
+	name: 'first_info'
+	BoxLayout:
+		orientation: 'horizontal'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.88}
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		BoxLayout:
+			pos_hint: {'center_y': 0.5}
+			orientation: 'vertical'
+			padding:[0,0,0,30]
+			Label:
+				text: 'Мін. обсяг місць:'
+				font_size: 24
+				color: [0,0,0]
+		MDTextField:
+			id: settlement
+			hint_text: 'К-сть місць'
+			size_hint: (None,None) 
+			height: '40dp'
+			width: '170dp'
+			font_size: 25
+	BoxLayout:
+		orientation: 'horizontal'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.84}
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Label:
+			text: 'Введіть/виберіть проміжок часу:'
+			font_size: 24
+			color: [0,0,0]
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.77}
+		orientation: 'horizontal'
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Label:
+			text: 'З:'
+			font_size: 24
+			color: [0,0,0]
+		MDTextField:
+			id: cal_1_start
+			hint_text: '(РРРР-ММ-ДД)'
+			size_hint: (None,None) 
+			height: '40dp'
+			width: '170dp'
+			font_size: 25
+		Label:
+			text: 'по'
+			font_size: 24
+			color: [0,0,0]
+		MDTextField:
+			id: cal_1_end
+			hint_text: '(РРРР-ММ-ДД)'
+			size_hint: (None,None) 
+			height: '40dp'
+			width: '170dp'
+			font_size: 25
+
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.73}
+		orientation: 'horizontal'
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Button:
+			id: cal_1
+			text: "<Вибрати період в Календарі>"
+			on_release: root.show_calendar()
+			font_size: 24
+
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.67}
+		orientation: 'horizontal'
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Button:
+			id: cal_1
+			text: "Результат"
+			on_release: root.print_table()
+			font_size: 24
+
+	BoxLayout:
+		id: table_1
+		pos_hint: {'top': 0.64}
+		size_hint: (1,None)
+		orientation: 'vertical'
+		ScrollView:
+			id: show_table1
+	MainTitleExit:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<SecondInfoScreen>:
+	name: 'second_info'
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.75}  
+		size_hint: (None,None)  
+		height: "250dp"
+		width: "400dp"
+		spacing: 20
+		BoxLayout:
+			orientation: 'horizontal'
+			MDTextField:
+				id: corpus
+				text: ''
+				on_focus: 
+					root.add_buttons()
+					dropdown2.open(self) if self.focus else None
+				size_hint_y: None
+				height: '40dp'
+				hint_text: 'Назва Корпусу'
+				font_size: 25
+
+			DropDown:
+				id: dropdown2
+				size_hint: (None,None)  
+				width: "0dp"
+				#on_parent: self.dismiss()
+				#disabled: True
+				on_select: corpus.text = '{}'.format(args[1])
+
+
+		BoxLayout:
+			orientation: 'horizontal'
+			MDTextField:
+				id: floor_num
+				multiline: False
+				font_size: 25
+				hint_text: 'Поверх'
+
+		BoxLayout:
+			orientation: 'horizontal'
+			size_hint: (None,None)  
+			height: "42dp"
+			width: "400dp"
+			Label:
+				text: 'З:'
+				font_size: 24
+				color: [0,0,0]
+			MDTextField:
+				id: cal_2_start
+				hint_text: '(РРРР-ММ-ДД)'
+				size_hint: (None,None) 
+				height: '40dp'
+				width: '170dp'
+				font_size: 25
+			Label:
+				text: 'по'
+				font_size: 24
+				color: [0,0,0]
+			MDTextField:
+				id: cal_2_end
+				hint_text: '(РРРР-ММ-ДД)'
+				size_hint: (None,None) 
+				height: '40dp'
+				width: '170dp'
+				font_size: 25
+
+		BoxLayout:
+			orientation: 'horizontal'
+			Button:
+				id: date_2
+				font_size: 25
+				size_hint: (None,None)  
+				height: "42dp"
+				width: "400dp"
+				text:"<Вибрати період в Календарі>"
+				on_release: root.show_calendar()
+		BoxLayout:        
+			orientation: 'horizontal'
+			Button:
+				id: res_2
+				font_size: 25
+				size_hint: (None,None)  
+				height: "42dp"
+				width: "400dp"
+				text:"Результат"
+				on_release: root.print_table()
+
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {'top': 0.6}
+		padding:[-20,0,0,0]
+		ScrollView:
+			id: show_table2
+			
+	MainTitleExit: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ThirdInfoScreen>:
+	name: 'third_info'
+	on_pre_enter: root.print_table()
+	BoxLayout:
+		orientation: 'horizontal'
+		pos_hint: {"center_x": 0.45, 'center_y': 0.92}  
+		size_hint: (None,None)  
+		height: 50
+		width: root.width
+		Label:
+			text: 'Кількість вільних номерів:'
+			font_size: 20
+			color: [0,0,0]
+			size_hint: (None,None)  
+			height: 42
+			width: 340
+
+		Label:
+			text: str(root.count_free_room()) + '/39'
+			font_size: 25
+			size_hint: (None,None)  
+			height: 42
+			width: 60
+			color: [0,0,0]
+
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {'top': 0.89}
+		ScrollView:
+			id: show_table3
+	MainTitleExit:                         
+
+
+
+<FourInfoScreen>:
+	name: 'four_info'
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.74}  
+		size_hint: (None,None)  
+		width: "400dp"
+		height: "180dp" 
+		spacing: 0
+		BoxLayout:
+			orientation: 'vertical'
+			MDTextField:
+				id: class
+				hint_text: "Клас готелю (2-5)"
+				size_hint_y: None
+				height: '40dp'
+				font_size: 25
+			MDTextField:
+				id: capasity
+				hint_text: 'Вмісткість номерів (1-3)'
+				size_hint_y: None
+				height: '42dp'
+				font_size: 25
+			MDTextField:
+				id: price
+				hint_text: 'Максимальна ціна за добу'
+				size_hint_y: None
+				height: '40dp'
+				font_size: 25
+			Button:
+				id: res_4
+				text: "Результат"
+				on_release: root.print_table()
+				font_size: 24
+				size_hint: (None,None)  
+				height: "42dp"
+				width: "400dp"
+
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {'top': 0.60}
+		padding:[-20,0,0,0]
+		ScrollView:
+			id: show_table4
+
+	MainTitleExit:
+
+
+<FiveInfoScreen>:
+	name: 'five_info'
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.85}  
+		size_hint: (None,None)  
+		width: "400dp"
+		height: "120dp" 
+		spacing: 0
+		BoxLayout:
+			orientation: 'vertical'
+			MDTextField:
+				id: room_id
+				hint_text: "Введіть ID конкретного номера (1-39)"
+				size_hint_y: None
+				height: '50dp'
+				font_size: 30
+			Button:
+				id: res_5
+				text: "Отримати відомість про номер"
+				on_release: root.print_table()
+				font_size: 24
+				size_hint: (None,None)  
+				height: "50dp"
+				width: "400dp"
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {'top': 0.78}
+		ScrollView:
+			id: show_table5
+
+	MainTitleExit:
+
+
+<SixInfoScreen>
+	name: 'six_info'
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.83}  
+		size_hint: (None,None)  
+		width: "400dp"
+		height: "160dp" 
+		spacing: 0
+		BoxLayout:
+			orientation: 'vertical'
+			MDTextField:
+				id: date_6
+				hint_text: "Введіть/Виберіть дату (РРРР-ММ-ДД)"
+				size_hint_y: None
+				height: '50dp'
+				font_size: 30
+				text: ""
+			Button:
+				id: cal_6
+				text: "<Вибрати дату в календарі>"
+				on_release: root.print_table()
+				font_size: 24
+				size_hint: (None,None)  
+				height: "50dp"
+				width: "400dp"
+				on_release: root.show_calendar()
+			Button:
+				id: res_6
+				text: "Переглянути Список"
+				on_release: root.print_table()
+				font_size: 24
+				size_hint: (None,None)  
+				height: "50dp"
+				width: "400dp"
+
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {'top': 0.73}
+		padding: [-10,0,0,0]
+		ScrollView:
+			id: show_table6
+
+	MainTitleExit:
+
+
+<SevenInfoScreen>        
+	name: 'seven_info'
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.85}  
+		size_hint: (None,None)  
+		width: "400dp"
+		height: "200dp"
+		spacing: 0
+		BoxLayout:
+			orientation: 'horizontal'
+			MDTextField:
+				id: list_company7
+				text: ''
+				on_focus: 
+					root.add_buttons()
+					dropdown7.open(self) if self.focus else None
+				size_hint_y: None
+				height: '40dp'
+				font_size: 25
+				hint_text: "Назва фірми/компанії"
+
+			DropDown:
+				id: dropdown7 
+				on_select: list_company7.text = '{}'.format(args[1])
+
+		BoxLayout:
+			orientation: 'vertical'
+			Button:
+				id: cal_7
+				text: "<Вказати період>"
+				font_size: 24
+				size_hint: (None,None)  
+				height: "50dp"
+				width: "400dp"
+				on_release: root.show_calendar()
+			Button:
+				id: res_7
+				text: "Результат"
+				on_release: root.print_table()
+				font_size: 24
+				size_hint: (None,None)  
+				height: "50dp"
+				width: "400dp"
+
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {'top': 0.72}
+		padding: [-10,0,0,0]
+		ScrollView:
+			id: show_table7
+
+	MainTitleExit:
+
+
+<EightInfoScreen>  
+	on_enter: root.print_table()       
+	name: 'eight_info'
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5,'top': 0.87}
+		size_hint: (None,None)
+		width: "415dp"
+		height: root.height
+		ScrollView:
+			GridLayout:
+				cols: 3
+				rows: root.row_count * 40
+				id: show_table8
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.9}  
+		size_hint: (None,None)  
+		width: "400dp"
+		height: "50dp"
+		Button:
+			text: "Скарги:"
+			font_size: 24
+
+	MainTitleExit:
+
+
+<NineInfoScreen>
+	name: 'nine_info'
+	on_enter: root.print_graphic()
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.9} 
+		size_hint: (None,None)
+		width: "415dp"
+		height: "100dp"
+		Label:
+			text: 'Графік прибутку Готельного Комплексу'
+			font_size: 20
+			color: [0,0,0]
+			size_hint: (None,None)
+			width: "415dp"
+			height: "100dp"
+			halign:'center'
+			valign:'middle'
+			text_size: self.size
+
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.65}
+		size_hint: (None,None)
+		width: "400dp"
+		height: "400dp"
+		id: graphic
+
+
+	MainTitleExit:
+
+
+
+<ElevenInfoScreen>
+	on_enter: root.print_table()
+	name: 'eleven_info'
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.9}
+		size_hint: (None,None)  
+		width: "400dp"
+		height: "50dp"
+		Button:
+			pos_hint: {"center_x": 0.5}
+			size_hint: (1,None)  
+			height: "42dp"
+			text: "Відомості про Постояльців:"
+			font_size: 24
+
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.85}
+		orientation: 'vertical'
+		Label:
+			text: 'Фірми:'
+			font_size: 24
+			color: [0,0,0]
+
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.7}
+		orientation: 'vertical'
+		size_hint: (1,None)  
+		height: len(root.get_list_corpus_name()) * 80
+		ScrollView:
+			id: show_table11_company
+
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.55}
+		orientation: 'vertical'
+		Label:
+			text: 'Особи:'
+			font_size: 24
+			color: [0,0,0]
+
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.4}
+		orientation: 'vertical'
+		size_hint: (1,None)  
+		height: len(root.get_list_corpus_name()) * 80
+		ScrollView:
+			id: show_table11_people
+
+	MainTitleExit:
+
+
+
+
+<TwelveInfoScreen>
+	name:'twelve_info'
+	BoxLayout:
+		orientation: 'horizontal'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.9}
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Label:
+			text: 'Введіть/виберіть проміжок часу:'
+			font_size: 24
+			color: [0,0,0]
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.83}
+		orientation: 'horizontal'
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Label:
+			text: 'З:'
+			font_size: 24
+			color: [0,0,0]
+		MDTextField:
+			id: cal_12_start
+			hint_text: '(РРРР-ММ-ДД)'
+			size_hint: (None,None) 
+			height: '40dp'
+			width: '170dp'
+			font_size: 25
+		Label:
+			text: 'по'
+			font_size: 24
+			color: [0,0,0]
+		MDTextField:
+			id: cal_12_end
+			hint_text: '(РРРР-ММ-ДД)'
+			size_hint: (None,None) 
+			height: '40dp'
+			width: '170dp'
+			font_size: 25
+
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.79}
+		orientation: 'horizontal'
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Button:
+			id: cal_12
+			text: "<Вибрати проміжок в Календарі>"
+			on_release: root.show_calendar()
+			font_size: 24
+
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.74}
+		orientation: 'horizontal'
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Button:
+			id: cal_12
+			text: "Відомості про нових Клієнтів"
+			on_release: root.print_table()
+			font_size: 24
+
+	BoxLayout:
+		pos_hint: {'top': 0.69}
+		orientation: 'vertical'
+		height: "300dp"
+		ScrollView:
+			id: show_table12_company
+
+
+	BoxLayout:
+		pos_hint: {'top': 0.4}
+		orientation: 'vertical'
+		height: "300dp"
+		ScrollView:
+			id: show_table12_people
+
+	MainTitleExit:
+
+
+
+
+<ThirteenInfoScreen>
+	name: 'thirteen_info'
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.82}
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		orientation: 'vertical'
+		MDTextField:
+			id: client_name
+			hint_text: "Введіть ім'я Клієнта"
+			size_hint_y: None
+			height: '50dp'
+			font_size: 30
+		Button:
+			id: res_13
+			text: "Отримати відомість про Клієнта"
+			on_release: root.print_table()
+			font_size: 24
+			size_hint: (None,None)  
+			height: "42dp"
+			width: "400dp"
+	BoxLayout:
+		pos_hint: {'top': 0.75}
+		orientation: 'vertical'
+		height: "300dp"
+		ScrollView:
+			id: show_table13
+
+	MainTitleExit:
+
+
+
+
+<FourteenInfoScreen>
+	name:'fourteen_info'
+	BoxLayout:
+		orientation: 'horizontal'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.88}
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		BoxLayout:
+			pos_hint: {'center_y': 0.5}
+			orientation: 'vertical'
+			padding:[0,0,0,30]
+			Label:
+				text: 'Введіть Номер:'
+				font_size: 24
+				color: [0,0,0]
+		MDTextField:
+			id: number_room
+			hint_text: '(1-39)'
+			size_hint: (None,None) 
+			height: '40dp'
+			width: '170dp'
+			font_size: 25
+	BoxLayout:
+		orientation: 'horizontal'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.84}
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Label:
+			text: 'Введіть/виберіть проміжок часу:'
+			font_size: 24
+			color: [0,0,0]
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.77}
+		orientation: 'horizontal'
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Label:
+			text: 'З:'
+			font_size: 24
+			color: [0,0,0]
+		MDTextField:
+			id: cal_14_start
+			hint_text: '(РРРР-ММ-ДД)'
+			size_hint: (None,None) 
+			height: '40dp'
+			width: '170dp'
+			font_size: 25
+		Label:
+			text: 'по'
+			font_size: 24
+			color: [0,0,0]
+		MDTextField:
+			id: cal_14_end
+			hint_text: '(РРРР-ММ-ДД)'
+			size_hint: (None,None) 
+			height: '40dp'
+			width: '170dp'
+			font_size: 25
+
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.73}
+		orientation: 'horizontal'
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Button:
+			id: cal_14
+			text: "<Вибрати проміжок в Календарі>"
+			on_release: root.show_calendar()
+			font_size: 24
+
+	BoxLayout:
+		pos_hint: {"center_x": 0.5, 'center_y': 0.67}
+		orientation: 'horizontal'
+		size_hint: (None,None)  
+		height: "42dp"
+		width: "400dp"
+		Button:
+			id: cal_14
+			text: "Відомості про Шуканий номер"
+			on_release: root.print_table()
+			font_size: 24
+
+	BoxLayout:
+		id: table_14
+		pos_hint: {'top': 0.64}
+		size_hint: (1,None)
+		orientation: 'vertical'
+		ScrollView:
+			id: show_table14
+	MainTitleExit:
+
+
+
+
+<FifteenInfoScreen>
+	on_pre_enter: root.get_data()
+	name: 'fifteen_info'
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {"center_x": 0.5, 'center_y': 0.75}
+		size_hint: (None,None)  
+		height: "300dp"
+		width: "415dp"
+		padding: [10,0,0,0]
+		Label:
+			text: '% Заброньованих номерів Окремими Особами: ' + str(root.get_data()[0][0]) + "%"
+			font_size: 20
+			color: [0,0,0]
+			text_size:self.size
+			halign:'left'
+			valign:'middle'
+		Label:
+			text: '% Заброньованих номерів Фірмами/Компаніями: ' +  str(root.get_data()[1][0]) + "%"
+			font_size: 20
+			color: [0,0,0]
+			text_size:self.size
+			halign:'left'
+			valign:'middle'
+		Label:
+			text: 'Загальний % заброньованих номерів: ' + str(float(root.get_data()[0][0]) + float(root.get_data()[1][0])) + "%"
+			font_size: 20
+			color: [0,0,0]
+			text_size:self.size
+			halign:'left'
+			valign:'middle'
+	MainTitleExit:
