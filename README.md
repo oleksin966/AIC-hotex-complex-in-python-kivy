@@ -1,3 +1,3 @@
 # AIC-hotex-complex-in-python-kivy
-You need install:
-kivy, kivymd, matplotlib? garden
+pip install:
+kivy, kivymd, matplotlib, kivy_garden
